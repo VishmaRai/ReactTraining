@@ -1,8 +1,7 @@
-export default function Warning({showWarning}) {
-    if(!showWarning) return null;
+const Warning = ({ showWarning, message }) => {
+  if (!showWarning) return null;
 
-  return (
-    <p className="warning">You can&apos;t use script tags here!</p>
-  )
-}
+  return <p className="warning">{message}</p>;
+};
 
+export default Warning;

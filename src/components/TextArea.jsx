@@ -1,23 +1,20 @@
-
+import React, { useState } from "react";
 import Warning from "./Warning";
-const TextArea = () => {
-  const [text, setText] = useState("");
-  const [showWarning, setShowWarning] = useState(false);
+
+const TextArea = ({text, setText}) => {
+ 
   const [message, setMessage] = useState("");
 
   const handleChange = (event) => {
-    let newText = event.target.value;
+    let newText = event.target.value; // Access the current input value
     if (newText.includes("<script>")) {
       setMessage("No 'script' tag is allowed");
-      setShowWarning(true);
       newText = newText.replace("<script>", " ");
     } else if (newText.includes("@")) {
-      setShowWarning(true);
       setMessage("No @ is allowed!");
       newText = newText.replace("@", "");
     } else {
       setMessage("");
-      setShowWarning(false);
     }
     setText(newText);
   };
@@ -31,7 +28,7 @@ const TextArea = () => {
         placeholder="Enter your text"
         spellCheck={false}
       />
-      <Warning showWarning={showWarning} message={message} />
+      <Warning message={message} />
     </>
   );
 };
